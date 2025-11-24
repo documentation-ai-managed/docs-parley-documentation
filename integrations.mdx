@@ -1,0 +1,86 @@
+---
+title: Integrations
+description: Connect Parley with your existing tools and workflows
+---
+
+## CRM Integration
+
+Connect Parley with your CRM system to automatically create contracts from deals and sync contract status back to your sales pipeline.
+
+<Steps>
+  <Step title="Connect CRM" icon="plug">
+    Use OAuth or API keys to establish secure connection.
+  </Step>
+  <Step title="Map Fields" icon="settings">
+    Configure how deal data maps to contract templates.
+  </Step>
+  <Step title="Automate Workflows" icon="zap">
+    Set up triggers for contract creation and status updates.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="Salesforce" icon="cloud">
+    ```javascript
+const sf = await parley.integrateCRM({
+  provider: 'salesforce',
+  apiKey: 'YOUR_SF_API_KEY',
+  instanceUrl: 'https://your-org.salesforce.com'
+});
+```
+  </Tab>
+  <Tab title="HubSpot" icon="database">
+    ```javascript
+const hs = await parley.integrateCRM({
+  provider: 'hubspot',
+  apiKey: 'YOUR_HS_API_KEY',
+  portalId: 'YOUR_PORTAL_ID'
+});
+```
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">CRM integrations reduce manual data entry and ensure contract data stays synchronized.</Callout>
+
+## Email Integration
+
+Parley integrates with email providers to send contract notifications and track email-based negotiations.
+
+<ExpandableGroup>
+  <Expandable title="Gmail Integration" default-open="true">
+    Connect Gmail to automatically send contract updates and track email threads.
+  </Expandable>
+  <Expandable title="Outlook Integration" default-open="false">
+    Sync with Outlook calendar for meeting scheduling and deadline tracking.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="REST API,Webhook">
+  ```bash
+curl -X POST "https://api.parley.ai/integrations/email" \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -d '{"provider":"gmail","auth_code":"AUTH_CODE"}'
+```
+  ```javascript
+parley.on('contract.sent', (event) => {
+  // Handle contract sent event
+  console.log('Contract sent:', event.contractId);
+});
+```
+</CodeGroup>
+
+## API Integration
+
+Use Parley's REST API and webhooks to build custom integrations with your existing systems.
+
+| Endpoint | Method | Purpose |
+|----------|--------|---------|
+| `/contracts` | `GET` | List contracts |
+| `/contracts` | `POST` | Create contract |
+| `/webhooks` | `POST` | Register webhook |
+
+<Callout kind="info">Parley's webhook system provides real-time updates for contract status changes and negotiation events.</Callout>
+
+<Expandable title="Webhook Configuration" default-open="false">
+  Configure webhooks to receive notifications when contracts are signed, negotiated, or require approval.
+</Expandable>

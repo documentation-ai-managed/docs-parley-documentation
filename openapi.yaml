@@ -1,0 +1,157 @@
+openapi: '3.0.0'
+info:
+  version: 1.0.0
+  title: Parley API
+  license:
+    name: MIT
+servers:
+  - url: https://api.parley.ai/v1
+paths:
+  /contracts:
+    get:
+      summary: List all contracts
+      operationId: listContracts
+      parameters:
+        - name: limit
+          in: query
+          description: How many items to return at one time (max 100)
+          required: false
+          schema:
+            type: integer
+            format: int32
+      responses:
+        200:
+          description: An paged array of contracts
+          headers:
+            x-next:
+              description: A link to the next page of responses
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contracts'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      summary: Create a contract
+      operationId: createContracts
+      responses:
+        201:
+          description: Contract created successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /contracts/{contractId}:
+    get:
+      summary: Info for a specific contract
+      operationId: showContractById
+      parameters:
+        - name: contractId
+          in: path
+          required: true
+          description: The id of the contract to retrieve
+          schema:
+            type: string
+      responses:
+        200:
+          description: Contract details including status, parties, and terms
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Contracts'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      summary: Update an existing contract
+      operationId: updateContract
+      responses:
+        200:
+          description: Contract updated successfully
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /negotiations:
+    get:
+      summary: List all negotiations
+      operationId: listNegotiations
+      parameters:
+        - name: status
+          in: query
+          description: Filter negotiations by status
+          required: false
+          schema:
+            type: string
+            enum: [active, completed, cancelled]
+      responses:
+        200:
+          description: A list of negotiations with their current status and participants
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Negotiations'
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+components:
+  schemas:
+    Contract:
+      required:
+        - id
+        - name
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        status:
+          type: string
+    Contracts:
+      type: array
+      items:
+        $ref: '#/components/schemas/Contract'
+    Negotiation:
+      required:
+        - id
+        - contractId
+      properties:
+        id:
+          type: integer
+          format: int64
+        contractId:
+          type: integer
+          format: int64
+        status:
+          type: string
+    Negotiations:
+      type: array
+      items:
+        $ref: '#/components/schemas/Negotiation'
+    Error:
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

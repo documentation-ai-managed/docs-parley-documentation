@@ -1,0 +1,78 @@
+---
+title: Introduction
+description: Overview of Parley and its core capabilities for contract management
+---
+
+Parley is an AI contract platform designed for business teams to create, understand, negotiate, and sign agreements without requiring a legal background. The platform provides tools for sales, marketing, and operations teams to draft, negotiate, and manage agreements efficiently.
+
+<Columns cols={3}>
+  <Card title="Create Contracts" icon="file-text" href="#/contracts" cta="Get Started" horizontal>
+    Draft professional agreements quickly using AI-powered templates and guidance.
+  </Card>
+  <Card title="Negotiate Smarter" icon="message-square" href="#/negotiation" cta="Learn More" horizontal>
+    Identify risks and negotiate terms with collaborative tools and AI insights.
+  </Card>
+  <Card title="Integrate Easily" icon="plug" href="#/integrations" cta="Explore" horizontal>
+    Connect Parley with your existing CRM, ERP, and legal systems for seamless workflows.
+  </Card>
+</Columns>
+
+## Key Features
+
+Parley empowers teams to handle contracts independently by providing clear explanations of legal terms, automated risk assessments, and negotiation support.
+
+<Tabs>
+  <Tab title="For Sales Teams" icon="users">
+    <Steps>
+      <Step title="Draft Agreements" icon="edit">
+        Use AI templates to create contracts tailored to your deals.
+      </Step>
+      <Step title="Review Terms" icon="eye">
+        Get plain language explanations of complex legal clauses.
+      </Step>
+      <Step title="Send for Signature" icon="send">
+        Share with counterparts and track signing progress.
+      </Step>
+    </Steps>
+  </Tab>
+  <Tab title="For Legal Teams" icon="shield">
+    <ExpandableGroup>
+      <Expandable title="Risk Assessment" default-open="false">
+        AI-powered analysis identifies potential liabilities and unfavorable terms.
+      </Expandable>
+      <Expandable title="Compliance Checks" default-open="false">
+        Automated verification against regulatory requirements.
+      </Expandable>
+    </ExpandableGroup>
+  </Tab>
+</Tabs>
+
+<Callout kind="info">Get started with Parley today and reduce contract review time by up to 80%.</Callout>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const contract = await parley.createContract({
+  template: 'nda',
+  parties: ['Company A', 'Company B']
+});
+```
+  ```python
+import parley
+
+contract = parley.create_contract(
+    template='nda',
+    parties=['Company A', 'Company B']
+)
+```
+</CodeGroup>
+
+## Getting Started
+
+To begin using Parley, sign up for an account and connect your existing systems. The platform guides you through each step of the contract lifecycle, from drafting to execution.
+
+<Expandable title="Quick Setup Guide" default-open="true">
+  1. Create your Parley account
+  2. Connect integrations (CRM, email, etc.)
+  3. Upload existing contract templates
+  4. Start drafting your first agreement
+</Expandable>

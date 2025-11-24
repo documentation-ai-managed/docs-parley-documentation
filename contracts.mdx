@@ -1,0 +1,84 @@
+---
+title: Contracts
+description: Learn how to create, manage, and track contracts using Parley
+---
+
+## Creating Contracts
+
+Parley simplifies contract creation with AI-powered templates and guided workflows. Start by selecting a template that matches your use case, then customize it with your specific terms and parties.
+
+<Steps>
+  <Step title="Choose Template" icon="file-text">
+    Select from pre-built templates for NDAs, service agreements, or custom contracts.
+  </Step>
+  <Step title="Add Parties" icon="users">
+    Specify all parties involved and their contact information.
+  </Step>
+  <Step title="Customize Terms" icon="edit">
+    Modify clauses as needed with AI suggestions for clarity and fairness.
+  </Step>
+  <Step title="Review & Send" icon="send">
+    Get risk assessment and send for negotiation.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="NDA Template" icon="file">
+    ```javascript
+const nda = await parley.createContract({
+  template: 'nda',
+  confidentiality: 'standard',
+  duration: '2 years'
+});
+```
+  </Tab>
+  <Tab title="Service Agreement" icon="briefcase">
+    ```javascript
+const service = await parley.createContract({
+  template: 'service-agreement',
+  services: ['consulting', 'development'],
+  payment: 'monthly'
+});
+```
+  </Tab>
+</Tabs>
+
+<Callout kind="tip">Use Parley's AI suggestions to ensure your contracts are comprehensive and legally sound.</Callout>
+
+## Managing Contracts
+
+Track the status of all your contracts in one dashboard. Parley provides real-time updates on negotiation progress, signature status, and renewal dates.
+
+<ExpandableGroup>
+  <Expandable title="Contract Status Tracking" default-open="true">
+    Monitor drafts, negotiations, and signed agreements with automated notifications.
+  </Expandable>
+  <Expandable title="Version Control" default-open="false">
+    Keep track of all contract revisions and changes during negotiations.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="Node.js,REST API">
+  ```javascript
+const contracts = await parley.listContracts({
+  status: 'active',
+  limit: 50
+});
+```
+  ```bash
+curl -X GET "https://api.parley.ai/contracts?status=active&limit=50" \
+  -H "Authorization: Bearer YOUR_API_KEY"
+```
+</CodeGroup>
+
+## Contract Analytics
+
+Gain insights into your contract portfolio with Parley's analytics dashboard. Identify trends, track performance, and optimize your contracting process.
+
+| Metric | Description | Target |
+|--------|-------------|--------|
+| Cycle Time | Days from draft to signature | `<30 days` |
+| Negotiation Rounds | Average rounds per contract | `<=3` |
+| Risk Score | AI-assessed risk level | `Low` |
+
+<Callout kind="info">Parley's analytics help you reduce contract cycle time by identifying bottlenecks in your process.</Callout>

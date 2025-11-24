@@ -1,0 +1,86 @@
+---
+title: Negotiation
+description: Use Parley's negotiation tools to collaborate and close deals faster
+---
+
+## Negotiation Workflow
+
+Parley's negotiation tools enable collaborative contract discussions with AI-powered insights. Both parties can suggest changes, comment on clauses, and track progress in real-time.
+
+<Steps>
+  <Step title="Send for Review" icon="send">
+    Share the contract draft with all parties via email or direct link.
+  </Step>
+  <Step title="Review Suggestions" icon="eye">
+    AI highlights potential issues and suggests improvements.
+  </Step>
+  <Step title="Discuss Changes" icon="message-square">
+    Use in-line comments and negotiation threads for discussion.
+  </Step>
+  <Step title="Accept & Sign" icon="check-circle">
+    Finalize terms and proceed to electronic signatures.
+  </Step>
+</Steps>
+
+<Tabs>
+  <Tab title="Redline Mode" icon="edit">
+    ```javascript
+const negotiation = await parley.startNegotiation(contractId, {
+  mode: 'redline',
+  participants: ['party1@example.com', 'party2@example.com']
+});
+```
+  </Tab>
+  <Tab title="Collaborative Editing" icon="users">
+    ```javascript
+const session = await parley.createNegotiationSession(contractId, {
+  allowComments: true,
+  requireApproval: false
+});
+```
+  </Tab>
+</Tabs>
+
+<Callout kind="success">Negotiation sessions can reduce contract cycle time by up to 50% through streamlined communication.</Callout>
+
+## AI Negotiation Assistant
+
+Parley's AI analyzes contract terms and provides negotiation strategies based on industry standards and your organization's preferences.
+
+<ExpandableGroup>
+  <Expandable title="Risk Assessment" default-open="true">
+    Identify clauses that may pose legal or financial risks to your organization.
+  </Expandable>
+  <Expandable title="Fairness Analysis" default-open="false">
+    Compare terms against market standards and suggest balanced alternatives.
+  </Expandable>
+  <Expandable title="Negotiation Playbook" default-open="false">
+    Get AI-generated strategies for common negotiation scenarios.
+  </Expandable>
+</ExpandableGroup>
+
+<CodeGroup tabs="JavaScript,Python">
+  ```javascript
+const analysis = await parley.analyzeContract(contractId, {
+  focus: 'risk',
+  industry: 'technology'
+});
+```
+  ```python
+analysis = parley.analyze_contract(
+    contract_id=contract_id,
+    focus='risk',
+    industry='technology'
+)
+```
+</CodeGroup>
+
+## Negotiation Best Practices
+
+| Practice | Description | Impact |
+|----------|-------------|--------|
+| Early Involvement | Include legal review from draft stage | Reduces revisions by `60%` |
+| Clear Communication | Use structured negotiation threads | Improves clarity by `40%` |
+| AI Guidance | Leverage risk assessments | Increases success rate by `25%` |
+
+<Callout kind="info">Set clear negotiation goals and use Parley's tracking tools to monitor progress toward completion.</Callout>
